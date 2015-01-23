@@ -22,17 +22,38 @@ title: Enable KVM in Debian and setup Android Studio.
 - Add your user to _kvm_ and _libvirt_ groups:
     - `sudo adduser <youruser> kvm`
     - `sudo adduser <youruser> libvirt`
+- Reboot your machine.
 
 
 ### Verify installation
 - Run the following: `sudo virsh -c qemu:///system list`. If the output is
+		
+
 		```
 			Id Name                 State
+			
+
 			----------------------------------
 		```
+		
+
 		Then is OK.
 
 
 ### Setup virtualization acceleration on Android Studio
 - Go to Run > Edit Configurations...
 - In Emulator tab check Additional command line options and copy `-qemu -m 2047 -enable-kvm`.
+
+
+### Troubleshooting
+
+- When you verify the installation you got this error
+
+	
+	`p11-kit: invalid config filename, will be ignored in the future: /etc/pkcs11/modules/gnome-keyring-module`
+
+
+	then run the following
+
+
+	`sudo mv /etc/pkcs11/modules/gnome-keyring-module /etc/pkcs11/modules/gnome-keyring.module`
