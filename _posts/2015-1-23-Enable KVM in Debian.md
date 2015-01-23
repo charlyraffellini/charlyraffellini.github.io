@@ -1,5 +1,9 @@
-# How to enable KVM in Debian and setup Android Studio.
-###### For Ubuntu go [here](https://software.intel.com/en-us/blogs/2012/03/12/how-to-start-intel-hardware-assisted-virtualization-hypervisor-on-linux-to-speed-up-intel-android-x86-emulator).
+---
+layout: post
+title: Enable KVM in Debian and setup Android Studio.
+---
+
+### For Ubuntu go [here](https://software.intel.com/en-us/blogs/2012/03/12/how-to-start-intel-hardware-assisted-virtualization-hypervisor-on-linux-to-speed-up-intel-android-x86-emulator).
 
 ### Requirements
 - To see if your processor supports hardware virtualization:
