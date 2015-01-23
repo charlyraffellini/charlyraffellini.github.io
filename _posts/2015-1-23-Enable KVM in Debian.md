@@ -27,10 +27,10 @@ title: Enable KVM in Debian and setup Android Studio.
 ### Verify installation
 - Run the following: `sudo virsh -c qemu:///system list`. If the output is
 		```
-        Id Name                 State
-        ----------------------------------
-        ```
-    Then is OK.
+			Id Name                 State
+			----------------------------------
+		```
+		Then is OK.
 
 
 ### Setup virtualization acceleration on Android Studio
