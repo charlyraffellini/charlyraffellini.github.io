@@ -29,17 +29,22 @@ footer-links:
   twitter: raffellinic
   stackoverflow: users/2565037/charly-raffellini
 
-# Your disqus shortname, entering this will enable commenting on posts
-disqus: charlyraffellini
+  youtube: # channel/<your_long_string> or user/<user-name>
+  googleplus: # anything in your profile username that comes after plus.google.com/
+
+
+# Enter your Disqus shortname (not your username) to enable commenting on posts
+# You can find your shortname on the Settings page of your Disqus account
+disqus:charlyraffellini
 
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
-google_analytics: 
+google_analytics:
 
 # Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
 # Used for Sitemap.xml and your RSS feed
 url: charlyraffellini.github.io
 
-# If you're hosting your site at a Project repository on GitHub pages 
+# If you're hosting your site at a Project repository on GitHub pages
 # (http://yourusername.github.io/repository-name)
 # and NOT your User repository (http://yourusername.github.io)
 # then add in the baseurl here, like this: "/repository-name"
@@ -49,21 +54,19 @@ baseurl: ""
 # !! You don't need to change any of the configuration flags below !!
 #
 
-markdown: kramdown
+markdown: redcarpet
 highlighter: pygments
 permalink: /:title/
 
 # The release of Jekyll Now that you're using
-version: v2.5.3
+version: v1.1.0
 
 # Set the Sass partials directory, as we're using @imports
 sass:
-  sass_dir: _scss
   style: :expanded # You might prefer to minify using :compressed
 
 # Use the following plug-ins
 gems:
-  - jemoji # Emoji please!
   - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
 
 # Exclude these files from your production _site
@@ -72,3 +75,4 @@ exclude:
     - Gemfile.lock
     - LICENSE
     - README.md
+    - CNAME
