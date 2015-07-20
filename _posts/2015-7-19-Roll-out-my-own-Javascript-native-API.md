@@ -3,6 +3,8 @@ layout: post
 title: Roll out my own Javascript native Api
 ---
 
+##### This post is inspired in [How to roll out your own Javascript API with V8](http://syskall.com/how-to-roll-out-your-own-javascript-api-with/).
+
 # Introduction
 
 - We are going to compile V8 Javascript Engine v4.3
@@ -54,7 +56,11 @@ jsnotify/
       `-- jsnotify.cpp
 ```
 
-- Copy the `deps/v8/samples/shell.cc` content into your `src/jsnotify.cpp`.
+- Copy the `deps/v8/samples/shell.cc` content into your `src/jsnotify.cpp`. Or you can clone my repository:
+
+```bash
+> $ git clone git@github.com:charlyraffellini/jsnotify.git
+```
 
 - Create your own alert() API function:
 
@@ -110,5 +116,7 @@ V8 version 4.3.61.38 [sample shell]
 ---
 
 References:
+
 - [How to roll out your own Javascript API with V8](http://syskall.com/how-to-roll-out-your-own-javascript-api-with/)
-- [V8 Hello World Shell](https://developers.google.com/v8/get_starteds)
+
+- [V8 Hello World Shell](https://developers.google.com/v8/get_starteds) 
