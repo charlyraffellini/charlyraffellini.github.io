@@ -4,6 +4,9 @@ title: Write a nodejs addon native extension
 ---
 
 # Introduction
+
+##### This post is a nodejs addon version of my [previous post](http://charlyraffellini.github.io/Roll-out-my-own-Javascript-native-API/).
+
 - We are going to write and build a nodejs addon.
 - Use libnotify packages in order to show desktop notifications.
 - [Source code](https://github.com/charlyraffellini/nan-addon-node-notify)
