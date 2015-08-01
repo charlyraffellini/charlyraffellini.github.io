@@ -6,6 +6,7 @@ title: Write a nodejs addon native extension
 # Introduction
 - We are going to write and build a nodejs addon.
 - Use libnotify packages in order to show desktop notifications.
+- [Source code](https://github.com/charlyraffellini/nan-addon-node-notify)
 
 - This example was runed in the following environment:
   - SO: Ubuntu 14.04.2 LTS
