@@ -1,10 +1,12 @@
 ---
 layout: default
+title: English
+category: english
 ---
 
 <div class="posts">
   {% for post in site.posts %}
-  {% unless post.categories contains 'english' %}
+  {% if post.categories contains 'english' %}
     <article class="post">
 
       <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
@@ -15,6 +17,6 @@ layout: default
 
       <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
     </article>
-  {% endunless %}
+  {% endif %}
   {% endfor %}
 </div>
