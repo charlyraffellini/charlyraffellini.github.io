@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Proposing an Idea And Convincing
-category: english
+category: english, speaking
 ---
 
 

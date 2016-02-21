@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Nouns and Adjectives
-category: english
+category: english, vocabulary, nouns, adjectives
 ---
 
 *These are some nouns-adjectives pairs:*
