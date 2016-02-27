@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Be supposed to and be going to
-category: english
+category: english, grammar
 ---
 
 Expression Structure:
