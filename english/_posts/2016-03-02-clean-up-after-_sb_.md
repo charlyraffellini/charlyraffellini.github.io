@@ -4,7 +4,7 @@ title: Clean up after sb
 category: english, vocabulary, phrasal verbs
 ---
 
-![clean up after yourself]({{ site.baseurl }}/images/clean_up_after_yourself.jpg)
+![clean up after yourself]({{ site.baseurl }}/images/clean_up_after_yourself.png)
 
 ### To remove dirt or problems that someone has made
   - **Clean up after yourself**
