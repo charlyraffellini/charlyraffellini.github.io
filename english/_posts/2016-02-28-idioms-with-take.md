@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Idioms with get
+title: Idioms with take
 category: english, vocabulary, idioms
 ---
 
