@@ -7,7 +7,9 @@ title: Visual Studio Productivity tips
 
 - Navigate To Tools -> Options -> Projects and Solutions -> General -> **”Track Active Item in Solution Explorer”**
 
+### 2 - Run To Cursor
 
+-  As a colleague [GT] showed me abuse of debugger is not healthy. But sometimes could be useful, for this cases you could use "Run To Cursor" `Ctrl + F10` instead put breackpoint every time you want to stop in a line.
 
 ---
 References:
