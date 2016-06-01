@@ -40,12 +40,14 @@ title: Refactor, Replace Constructor with Factory Method
             ShieldRate = shieldRate;
         }
 
+        //If's used here show you that this is Type Code and could be replaced with subclasses
         public void Punch(Person another)
         {
             if (this.HitRate <= 0) throw new Exception("Village can not punch");
             another.ShieldMe(this.HitRate);
         }
 
+        //If's used here show you that this is Type Code and could be replaced with subclasses
         private void ShieldMe(int hitRate)
         {
             if (this.ShieldRate == 0) this.Life = 0;
@@ -87,6 +89,9 @@ title: Refactor, Replace Constructor with Factory Method
     
     public abstract class Person
     {
+        //This is the Factory Method but instad of just pass the arguments to
+        //the old constructor Person(int, int), it chose between the new subclasses
+        //and instantiate the correct on.
         public static Person CreatePerson(int hitRate, int shieldRate)
         {
             if (shieldRate > 0) return new Soldier(hitRate, shieldRate);
@@ -96,7 +101,7 @@ title: Refactor, Replace Constructor with Factory Method
         protected int HitRate { get; set; }
         protected int ShieldRate { get; set; }
         public int Life { get; set; } = 100;
-        public abstract void ShieldMe(int hitRate);
+        protected abstract void ShieldMe(int hitRate);
         public abstract void Punch(Person another);
 
         public class Village : Person
@@ -106,7 +111,7 @@ title: Refactor, Replace Constructor with Factory Method
                 throw new Exception("Village can not punch");
             }
 
-            public override void ShieldMe(int hitRate)
+            protected override void ShieldMe(int hitRate)
             {
                 this.Life = 0;
             }
@@ -125,7 +130,7 @@ title: Refactor, Replace Constructor with Factory Method
                 another.ShieldMe(this.HitRate);
             }
 
-            public override void ShieldMe(int hitRate)
+            protected override void ShieldMe(int hitRate)
             {
                 var effect = Math.Max(0, hitRate - this.ShieldRate);
                 this.Life -= effect;
