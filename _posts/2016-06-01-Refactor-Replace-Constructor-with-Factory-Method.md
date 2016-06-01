@@ -134,8 +134,7 @@ title: Refactor, Replace Constructor with Factory Method
     }
 ```
 
-
-
+####### You can run it with C# 6 and _Microsoft.VisualStudio.TestTools.UnitTesting_ library.
 
 ---
 References:
