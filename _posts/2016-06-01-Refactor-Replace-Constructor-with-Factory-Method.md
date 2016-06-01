@@ -3,7 +3,7 @@ layout: post
 title: Refactor, Replace Constructor with Factory Method
 ---
 
-Problem: We are using Type Code instead of Subclases
+### Problem: We are using Type Code instead of Subclases
 
 ```C#
     [TestClass]
@@ -58,7 +58,7 @@ Problem: We are using Type Code instead of Subclases
     }
 ```
 
-Refactor using:
+### Refactor using:
 - **Replace Constructor with Factory Method**
 - and then **Replace Type Code with Subclasses** inside the Factory Method
 
