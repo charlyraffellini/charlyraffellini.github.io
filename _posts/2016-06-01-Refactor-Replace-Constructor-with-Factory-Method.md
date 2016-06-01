@@ -60,7 +60,7 @@ title: Refactor, Replace Constructor with Factory Method
     }
 ```
 
-### Refactor using:
+### Used Refactors:
 - **Replace Constructor with Factory Method**
 - and then **Replace Type Code with Subclasses** inside the Factory Method
 
