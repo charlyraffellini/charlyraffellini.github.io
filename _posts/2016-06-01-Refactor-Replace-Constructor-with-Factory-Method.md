@@ -91,7 +91,7 @@ title: Refactor, Replace Constructor with Factory Method
     {
         //This is the Factory Method but instad of just pass the arguments to
         //the old constructor Person(int, int), it chose between the new subclasses
-        //and instantiate the correct on.
+        //and instantiate the correct one.
         public static Person CreatePerson(int hitRate, int shieldRate)
         {
             if (shieldRate > 0) return new Soldier(hitRate, shieldRate);
