@@ -1,6 +1,11 @@
 ---
 layout: post
 title: Refactor, Replace Constructor with Factory Method
+description: Notes about abutomatic guided refactoring 
+date: 2016-06-01
+categories: technology update
+img: refactoring.jpg
+author: Carlos Raffellini
 ---
 
 ### Problem: We are using Type Code instead of Subclases

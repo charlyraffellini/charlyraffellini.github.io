@@ -1,6 +1,11 @@
 ---
 layout: post
 title: Visual Studio Productivity tips
+description: Notes about productivity
+date: 2016-05-27
+categories: technology update
+img: Visual-Studio.png
+author: Carlos Raffellini
 ---
 
 ### 1 - Keep Track of your active files inside Solution Explorer Automatically

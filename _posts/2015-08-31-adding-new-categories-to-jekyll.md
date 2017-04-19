@@ -1,6 +1,11 @@
 ---
 layout: post
 title: Add new categories in jekyll
+description: Notes about jekyll
+date: 2015-08-31
+categories: technology update
+img: jekyll-poster.png
+author: Carlos Raffellini
 ---
 
 

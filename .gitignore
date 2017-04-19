@@ -1,9 +1,12 @@
 _site
-.DS_Store
-.jekyll
-.bundle
 .sass-cache
-Gemfile
-Gemfile.lock
-node_modules
-package.json
+.jekyll-metadata
+
+### CodeKit ###
+# General CodeKit files to ignore
+config.codekit
+/min
+
+### CodeKit Patch ###
+*/codekit-config.json
+.codekit-cache

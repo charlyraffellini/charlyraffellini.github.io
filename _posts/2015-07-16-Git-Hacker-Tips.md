@@ -1,6 +1,11 @@
 ---
 layout: post
 title: Inside Git
+description: Git backend exploration
+date: 2015-07-16
+categories: technology update
+img: git-objects.png
+author: Carlos Raffellini
 ---
 
 ### Commands to explore Git Objects
