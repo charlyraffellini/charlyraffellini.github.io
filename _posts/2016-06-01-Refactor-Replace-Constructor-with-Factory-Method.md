@@ -10,7 +10,7 @@ author: Carlos Raffellini
 
 ### Problem: We are using Type Code instead of Subclases
 
-```C#
+```cs
     [TestClass]
     public class Scenario
     {
@@ -69,7 +69,7 @@ author: Carlos Raffellini
 - **Replace Constructor with Factory Method**
 - and then **Replace Type Code with Subclasses** inside the Factory Method
 
-```C#
+```cs
     [TestClass]
     public class Scenario
     {
