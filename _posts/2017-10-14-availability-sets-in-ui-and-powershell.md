@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Azure availability sets in portal ui and powershell
+title: Differences between azure availability sets in portal ui and powershell
 description: Automation of availability sets in azure
 date: 2017-10-14
 categories: automation infrastructure 
