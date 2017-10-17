@@ -18,6 +18,12 @@ However, I do not like to do the same thing twice through the UI. So, I created 
 
 ![relations](/assets/images/2017/load_balancer_availability_set_relational_model.png)
 
+After adding a new VM through powershell to a load balancer this is the result:
+
+{% gist charlyraffellini/f55e3dc5a73c13e0e632186f15fb35d7 %}
+
+![ui](/assets/images/2017/lb_with_availability_set.JPG)
+
 I tried to add a virtual machine in a different availability set from the one than the one associated with the load balancer. This is what I got from the test:
 
 ![availability set error](/assets/images/2017/availability_set_error.JPG)
