@@ -10,7 +10,7 @@ author: Carlos Raffellini
 
 Azure Active Directory has plenty of documentation and scenarios you can use for authentication and authorization. That's why I am motivated to write this post.
 
-For this post, I am considering Single-Tenant Applications only. I am relaying in Azure AD HTTP endpoints instead of using libraries. Multi-Tenant Applications will be considered in future posts. Also, most of this post consider portal interaction, automation scripts will be considered in future posts.
+For this post, I am considering Single-Tenant Applications only. I am relaying in Azure AD HTTP endpoints instead of using libraries. Also, most of this post consider portal interaction, automation scripts will be considered in future posts.
 
 For [**authentication** we have 3 protocols](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-authentication-protocols):
 
@@ -244,6 +244,8 @@ GET /{tenant_id}/oauth2/authorize
 Host: login.microsoftonline.com
 ```
 
+#### Note: `resource` and `prompt` are optional parameters. Actually, if we don't specify the `resource` we will get a `code` that is useful to get an `access_token` from other resources. `prompt` is necessary in case we want to force a login or consent.
+
 You can see `client_id=4cd406ee-8b7b-4ae9-8ab8-dd9fea0b0477` is the app that initiate the flow and `resource=3687a30c-1296-4d61-ad5c-e20dceec8f3e` represents the resource the user is asked to consent.
 
 The Authorization server comes back with a request to:
@@ -357,7 +359,7 @@ An example of configuring the authorization using Bearer tokens.
 
 # Extras
 
-#### OpenId flow of Microsoft.Owin.Security.OpenIdConnect v3.0.1 library
+## OpenId flow of Microsoft.Owin.Security.OpenIdConnect v3.0.1 library
 
 ```csharp
 public class AccountController : Controller
@@ -403,13 +405,65 @@ Server: Microsoft-IIS/10.0
 Set-Cookie: ...
 ```
 
+## Multi-tenant applications
+
+Multi-tenant should be enabled for your app. Multi-tenancy allows users from another Azure AD tenant to sign-in to your application.
+
+This creates a new app for the other tenant. Then the administrator of the other tenant should assign users and groups to the app roles.
+
+Then you should perform token validations in the authorization middleware of your application.
+
+This is [an example](https://github.com/Azure-Samples/active-directory-dotnet-webapp-multitenant-openidconnect/blob/cd3a53d4c70909fda14274925a6ae209426b0625/TodoListWebApp/App_Start/Startup.Auth.cs) from [Azure-Samples](https://github.com/Azure-Samples).
+
+```csharp
+public partial class Startup
+{
+    public void ConfigureAuth(IAppBuilder app)
+    {         
+        string Authority = "https://login.microsoftonline.com/common/";
+        ...
+        app.UseOpenIdConnectAuthentication(
+            new OpenIdConnectAuthenticationOptions
+            {
+                ClientId = ClientId,
+                Authority = Authority,
+                TokenValidationParameters = new System.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                },
+                Notifications = new OpenIdConnectAuthenticationNotifications()
+                {
+                    ...
+                    SecurityTokenValidated = (context) =>
+                    {
+                        string issuer = context.AuthenticationTicket.Identity.FindFirst("iss").Value;
+                        string UPN = context.AuthenticationTicket.Identity.FindFirst(ClaimTypes.Name).Value;
+                        string tenantID = context.AuthenticationTicket.Identity.FindFirst("http://schemas.microsoft.com/identity/claims/tenantid").Value;
+
+                        if (
+                            (db.Tenants.FirstOrDefault(a => ((a.IssValue == issuer) && (a.AdminConsented))) == null)
+                            && (db.Users.FirstOrDefault(b =>((b.UPN == UPN) && (b.TenantID == tenantID))) == null)
+                            )
+                            throw new SecurityTokenValidationException();                            
+                        return Task.FromResult(0);
+                    },
+                    ...
+                }
+            });
+
+    }
+}
+```
+
 ---
 
 # References
 
-- Azure AD token reference: https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-token-and-claims
-- OpenId Connect Flow: https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-protocols-openid-connect-code
-- OAuth 2.0 Azure Implementation Flow: https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-protocols-oauth-code
-- Applications with Azure Active Directory: https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications
-- Application roles: https://docs.microsoft.com/en-us/azure/architecture/multitenant-identity/app-roles
-- Code Samples: https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-code-samples, https://azure.microsoft.com/en-gb/resources/samples/active-directory-dotnet-webapp-roleclaims/
+- [Azure AD token reference](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-token-and-claims)
+- [OpenId Connect Flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-protocols-openid-connect-code)
+- [OAuth 2.0 Azure Implementation Flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-protocols-oauth-code)
+- [Applications with Azure Active Directory](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications)
+- [Application roles](https://docs.microsoft.com/en-us/azure/architecture/multitenant-identity/app-roles)
+- [Authentication Scenarios](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-authentication-scenarios)
+- [Code Samples](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-code-samples)
+- [Roles and Claims Sample](https://azure.microsoft.com/en-gb/resources/samples/active-directory-dotnet-webapp-roleclaims/)
