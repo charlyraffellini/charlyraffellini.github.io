@@ -455,6 +455,35 @@ public partial class Startup
 }
 ```
 
+## Validate Token Signature
+
+Validate the jwt signature could be a bit tricky. First you need to get the certificate from `https://login.microsoftonline.com/common/discovery/keys`. You can get the which certificate to get using the `kid` field in the keys of the certificates returned by the last endpoint and compare them with the one on the header of the jwt you have.
+
+Using package `System.IdentityModel.Tokens.Jwt` version 5.2.0.
+
+```csharp
+        [TestMethod]
+        public void TestMethod1()
+        {
+
+            string X509Cert = "Certificate Here";
+            X509Certificate2 DefaultCert_Public_2048 = new X509Certificate2(Convert.FromBase64String(X509Cert));
+            X509SecurityKey DefaultX509Key_Public_2048 = new X509SecurityKey(DefaultCert_Public_2048);
+            SigningCredentials DefaultX509SigningCreds_Public_2048_RsaSha2_Sha2 = new SigningCredentials(DefaultX509Key_Public_2048, SecurityAlgorithms.RsaSha256Signature);
+            TokenValidationParameters validationParameters = new TokenValidationParameters();
+            validationParameters.IssuerSigningKey = DefaultX509Key_Public_2048;
+            validationParameters.ValidAudience = "be3eb1d8-ecaf-454a-a42d-2430f9d5266e";
+            validationParameters.ValidIssuer = "https://sts.windows.net/1e5cac30-5788-44ad-b358-2d52de73d078/";
+
+            SecurityToken validatedToken;
+            var token = "Token With Signature";
+            ClaimsPrincipal principal = new JwtSecurityTokenHandler().ValidateToken(token
+                , validationParameters, out validatedToken);
+
+            Assert.IsNotNull(validatedToken);
+        }
+```
+
 ---
 
 # References
