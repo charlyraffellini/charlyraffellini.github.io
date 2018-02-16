@@ -111,7 +111,7 @@ We got the profile of the user we are acting on-behalf-of. The response we get l
 }
 ```
 
-Thank you for reading. My next post will be about calling the Graph API using Aplication access intead of User permissions.
+Thank you for reading. My next post will be about calling the Graph API using Application access instead of User permissions.
 
 ---
 
