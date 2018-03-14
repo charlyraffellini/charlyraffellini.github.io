@@ -1,6 +1,6 @@
 ---
 layout: post
-title: About Graph API and Azure Active Directory - Part III
+title: AAD Part III - About Graph API and Azure Active Directory
 description: About Graph API and Azure Active Directory
 date: 2018-01-31
 categories: authentication authorization saas azure active directory graphapi
@@ -16,19 +16,19 @@ This time I am going to show how to get an access token to access to Graph API r
 
 We will be working with an application which in its manifest has the following access:
 
-  ```json
-  "requiredResourceAccess": [
-    {
-      "resourceAppId": "00000002-0000-0000-c000-000000000000",
-      "resourceAccess": [
-        {
-          "id": "311a71cc-e848-46a1-bdf8-97ff7156d8e6",
-          "type": "Scope"
-        }
-      ]
-    }
-  ],
-  ```
+```json
+"requiredResourceAccess": [
+  {
+    "resourceAppId": "00000002-0000-0000-c000-000000000000",
+    "resourceAccess": [
+      {
+        "id": "311a71cc-e848-46a1-bdf8-97ff7156d8e6",
+        "type": "Scope"
+      }
+    ]
+  }
+],
+```
 
 This access is a permission to UserProfile.Read on the Active Directory Application. This means an `access_token` that has UserProfile.Read in its scope can read the profile on-behalf-of the user.
 
@@ -36,7 +36,7 @@ This access is a permission to UserProfile.Read on the Active Directory Applicat
 
 As usual, we will request a code which later we will change for an access_token
 
-```
+```http
 GET /{my_teant_id}/oauth2/authorize?response_type=code
 &redirect_uri={url_encoded_return_url}
 &response_mode=query
@@ -52,7 +52,7 @@ This request returns a redirect to the reply URL with the code in the query stri
 
 Then we perform another request to get the `access_token`:
 
-```
+```http
 POST /{my_tenant_id}/oauth2/token HTTP/1.1
 Host: login.microsoftonline.com
 Content-Type: application/x-www-form-urlencoded
@@ -84,7 +84,7 @@ The most important thing here is to recognize that the audience (`aud`) that thi
 
 Have in mind we are using the new Graph API (graph.microsoft.com) that covers more than the previous Azure AD Graph API (https://graph.windows.net). Also, Azure AD Graph API is becoming deprecated.
 
-```
+```http
 GET /v1.0/me HTTP/1.1
 Host: graph.microsoft.com
 Authorization: Bearer {the_access_token_we_just_got}

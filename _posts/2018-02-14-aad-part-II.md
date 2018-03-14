@@ -1,6 +1,6 @@
 ---
 layout: post
-title: About OpenId and OAuth 2.0 tokens in Azure Active Directory - Part II
+title: AAD Part II - About OpenId and OAuth 2.0 tokens in Azure Active Directory
 description: OAuth2 service-to-service authorization in Azure AD
 date: 2018-02-14
 categories: authentication authorization saas azure active directory 
