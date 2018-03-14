@@ -1,0 +1,44 @@
+---
+layout: post
+title: About Group Claims in id_token - Part IV
+description: About Group Claims in id_token
+date: 2018-01-31
+categories: authentication authorization saas azure active directory claims
+img: 2018/azure_active_dierctory_part_4.jpg
+author: Carlos Raffellini
+---
+
+# Azure Active Directory Part IV - Group Claims
+
+I recently discovered we can retrieve which groups an user is a member of when the user authenticates to our application.
+
+This has been there for long but I will explain anyway.
+
+## Pre-conditions
+
+- The same requisites to retrieve an id_token through OpenID flow.
+- In the application manifest to set the field `groupMembershipClaims` to "All" or "SecurityGroup".
+
+## Get the `id_token` with OpenID Connect flow
+
+- As in previous posts.
+
+## Post-conditions
+
+- The `id_token` contains a new field call `groups` which contains the `object id` of the different groups the user is a member.
+
+```json
+  ...
+  "groups": [
+    "19d18b95-b12c-4982-8394-3ae9aa2edd86",
+    "fd9d8cba-47bf-47b7-bdf8-4e2ff4672cfe"
+  ],
+  ...
+```
+
+---
+
+# References
+
+[Azure AD token reference](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-token-and-claims)
+[jwt.ms](https://jwt.ms/)
